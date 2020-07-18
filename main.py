@@ -1,4 +1,4 @@
-
+import tensorflow as tf
 from keras.models import Sequential
 from keras.layers import Conv2D, ZeroPadding2D, Activation, Input, concatenate
 from keras.models import Model
@@ -15,7 +15,6 @@ import os
 import numpy as np
 from numpy import genfromtxt
 import pandas as pd
-import tensorflow as tf
 from fr_utils import *
 from inception_blocks_v2 import *
 #np.set_printoptions(threshold=np.nan)
@@ -34,12 +33,12 @@ def triplet_loss(y_true, y_pred, alpha = 0.2):
     
     return loss
 
-with tf.Session() as test:
-    tf.set_random_seed(1)
+with tf.compat.v1.Session() as test:
+    tf.compat.v1.set_random_seed(1)
     y_true = (None, None, None)
-    y_pred = (tf.random_normal([3, 128], mean=6, stddev=0.1, seed = 1),
-              tf.random_normal([3, 128], mean=1, stddev=1, seed = 1),
-              tf.random_normal([3, 128], mean=3, stddev=4, seed = 1))
+    y_pred = (tf.compat.v1.random_normal([3, 128], mean=6, stddev=0.1, seed = 1),
+              tf.compat.v1.random_normal([3, 128], mean=1, stddev=1, seed = 1),
+              tf.compat.v1.random_normal([3, 128], mean=3, stddev=4, seed = 1))
     loss = triplet_loss(y_true, y_pred)
     
     print("loss = " + str(loss.eval()))
