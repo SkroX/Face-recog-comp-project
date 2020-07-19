@@ -1,5 +1,6 @@
-tensorflow
-keras
-matplotlib
-opencv-python
-pandas
+tensorflow==2.2.0
+Keras==2.3.1          
+matplotlib==3.2.2          
+opencv-python==4.1.2.30 
+pandas==1.0.5  
+cupy-cuda101==7.4.0 

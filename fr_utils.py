@@ -3,10 +3,10 @@ import numpy as np
 import os
 import cv2
 from numpy import genfromtxt
-from keras.layers import Conv2D, ZeroPadding2D, Activation, Input, concatenate
-from keras.models import Model
-from keras.layers.normalization import BatchNormalization
-from keras.layers.pooling import MaxPooling2D, AveragePooling2D
+from tensorflow.keras.layers import Conv2D, ZeroPadding2D, Activation, Input, concatenate
+from tensorflow.keras.models import Model
+from tensorflow.keras.layers import BatchNormalization
+from tensorflow.keras.layers import MaxPooling2D, AveragePooling2D
 import h5py
 import matplotlib.pyplot as plt
 
