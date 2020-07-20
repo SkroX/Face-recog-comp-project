@@ -17,7 +17,6 @@ from numpy import genfromtxt
 import pandas as pd
 from fr_utils import *
 from inception_blocks_v2 import *
-#np.set_printoptions(threshold=np.nan)
 
 FRmodel = faceRecoModel(input_shape=(3, 96, 96))
 
@@ -53,10 +52,8 @@ database["tian"] = img_to_encoding("images/tian.jpg", FRmodel)
 database["andrew"] = img_to_encoding("images/andrew.jpg", FRmodel)
 database["kian"] = img_to_encoding("images/kian.jpg", FRmodel)
 database["dan"] = img_to_encoding("images/dan.jpg", FRmodel)
-database["sebastiano"] = img_to_encoding("images/sebastiano.jpg", FRmodel)
 database["bertrand"] = img_to_encoding("images/bertrand.jpg", FRmodel)
 database["kevin"] = img_to_encoding("images/kevin.jpg", FRmodel)
-database["felix"] = img_to_encoding("images/felix.jpg", FRmodel)
 database["benoit"] = img_to_encoding("images/benoit.jpg", FRmodel)
 database["arnaud"] = img_to_encoding("images/arnaud.jpg", FRmodel)
 
