@@ -70,29 +70,45 @@ def verify(image_path, identity, database, model):
         print("It's not " + str(identity) + ", please go away")
         door_open = False
 
-    return dist, door_open
+    return door_open
 
 
 verify("images/camera_0.jpg", "younes", database, FRmodel)
 verify("images/camera_2.jpg", "kian", database, FRmodel)
 
-def who_is_it(image_path, database, model):
-    encoding = img_to_encoding(image_path, model)    
-    min_dist = 10000
-    for (name, x) in database.items():
-        dist = np.linalg.norm(encoding - x)
-        if dist < min_dist:
-            min_dist = dist
-            identity = name
+yourpath = '/content/Face-Recognition/images'
 
-    if min_dist > 0.7:
-        print("Not in the database.")
-    else:
-        print ("it's " + str(identity) + ", the distance is " + str(min_dist))
+import os
+import shutil
+for root, dirs, files in os.walk(yourpath, topdown=False):
+  for name in files:
+    print(name)
+    if (verify('/content/Face-Recognition/images/' + str(name), "younes", database, FRmodel)):
+      shutil.move('/content/Face-Recognition/images/' + str(name), "/content/Face-Recognition/images2/")
+
+
+
+# def who_is_it(image_path, database, model):
+#     encoding = img_to_encoding(image_path, model)    
+#     min_dist = 10000
+#     for (name, x) in database.items():
+#         dist = np.linalg.norm(encoding - x)
+#         if dist < min_dist:
+#             min_dist = dist
+#             identity = name
+
+#     if min_dist > 0.7:
+#         print("Not in the database.")
+#     else:
+#         print ("it's " + str(identity) + ", the distance is " + str(min_dist))
         
-    return min_dist, identity
+#     return min_dist, identity
 
-who_is_it("images/camera_0.jpg", database, FRmodel)
+# who_is_it("images/camera_0.jpg", database, FRmodel)
+
+
+
+
 
 
 
