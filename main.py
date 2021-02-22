@@ -84,9 +84,9 @@ for root, dirs, files in os.walk(yourpath, topdown=False):
   for name in files:
     print(name)
     if (verify('/content/Face-Recognition/images/' + str(name), "younes", database, FRmodel)):
-      shutil.move('/content/Face-Recognition/images/' + str(name), "/content/Face-Recognition/images2/")
+        shutil.move('/content/Face-Recognition/images/' + str(name), "/content/Face-Recognition/images2/")
     if (verify('/content/Face-Recognition/images/' + str(name), "shubham", database, FRmodel)):
-    shutil.move('/content/Face-Recognition/images/' + str(name), "/content/Face-Recognition/images2/")
+        shutil.move('/content/Face-Recognition/images/' + str(name), "/content/Face-Recognition/images2/")
 
 
 
