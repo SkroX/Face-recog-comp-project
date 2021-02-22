@@ -56,7 +56,7 @@ database["bertrand"] = img_to_encoding("images/bertrand.jpg", FRmodel)
 database["kevin"] = img_to_encoding("images/kevin.jpg", FRmodel)
 database["benoit"] = img_to_encoding("images/benoit.jpg", FRmodel)
 database["arnaud"] = img_to_encoding("images/arnaud.jpg", FRmodel)
-database["shubham"] = img_to_encoding("images/Shubham_Kumar_IMG(1) (copy).jpg", FRmodel)
+database["shubham"] = img_to_encoding("images/sk1.jpg", FRmodel)
 
 def verify(image_path, identity, database, model):
     
