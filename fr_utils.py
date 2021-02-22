@@ -184,7 +184,10 @@ def load_dataset():
 
 def img_to_encoding(image_path, model):
     img1 = cv2.imread(image_path, 1)
-    img1 = cv2.resize(img1,(96,96))
+    try:
+        img1 = cv2.resize(img1,(96,96))
+    except Exception as e:
+        print(str(e))
     img = img1[...,::-1]
     img = np.around(np.transpose(img, (2,0,1))/255.0, decimals=12)
     x_train = np.array([img])
