@@ -1,1 +1,0 @@
-This folder will contain similar images from a person, user as per your main file.
