@@ -60,6 +60,10 @@ database["benoit"] = img_to_encoding("images/benoit.jpg", FRmodel)
 database["arnaud"] = img_to_encoding("images/arnaud.jpg", FRmodel)
 database["shubham"] = img_to_encoding("images/sk1.jpg", FRmodel)
 
+for key in database:
+    path = "/content/Face-Recognition/" + key
+    os.mkdir(path) 
+
 def verify(image_path, identity, database, model):
     
     encoding = img_to_encoding(image_path, model)
