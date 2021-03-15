@@ -14,7 +14,7 @@ python main.py
 ## Use google colab link to get our project as it support gpu
 <h3>Click on link below
 
-[Open the google colab Notebook](https://colab.research.google.com/drive/1AgwD8qEdvzLhPOixOqR5ujp8Swxnl5BT?usp=sharing)
+[Open the google colab Notebook](https://colab.research.google.com/drive/1TTfy5iKcBynP4aVYgU-JhURR9FpGIgvc?usp=sharing)
 ```
 And use Shift + Enter to run all the cells 
 Running all the cells will download all the code and will run the main function for predictions
