@@ -59,6 +59,8 @@ database["kevin"] = img_to_encoding("images/kevin.jpg", FRmodel)
 database["benoit"] = img_to_encoding("images/benoit.jpg", FRmodel)
 database["arnaud"] = img_to_encoding("images/arnaud.jpg", FRmodel)
 database["shubham"] = img_to_encoding("images/sk1.jpg", FRmodel)
+database["srk"] = img_to_encoding("images/srk1.jpg", FRmodel)
+
 
 for key in database:
     path = "/content/Face-recog-comp-project/" + key
