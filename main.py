@@ -19,6 +19,15 @@ from fr_utils import *
 from inception_blocks_v2 import *
 import os
 import shutil
+import h5py
+import seaborn as sn
+import pandas as pd
+import matplotlib.pyplot as plt
+import matplotlib
+from sklearn.metrics import confusion_matrix
+import cv2
+import warnings
+warnings.filterwarnings("ignore")
 
 FRmodel = faceRecoModel(input_shape=(3, 96, 96))
 
@@ -47,6 +56,59 @@ with tf.compat.v1.Session() as test:
 FRmodel.compile(optimizer = 'adam', loss = triplet_loss, metrics = ['accuracy'])
 load_weights_from_FaceNet(FRmodel)
 
+def classify(image_path, database, model):
+    
+    encoding = img_to_encoding(image_path, model)
+    maxi = 100000
+    classe = ""
+    for (u, v) in database.items():
+      dist = np.linalg.norm(encoding - database[u])
+      if dist < maxi:
+        classe = u
+        maxi = dist
+    return classe
+
+def accuracy(x, y, database, model):
+  count = 0
+  
+  for i in range(len(x)):
+    cv2.imwrite("temp.jpg",x[i])
+    if classify("temp.jpg", database, model) == y[i]:
+      count += 1
+  print("\nAccuracy is: " + str((count * 100)/ len(x)) + " %\n")
+
+
+hf = h5py.File('datasets/train_face.h5', 'r')
+
+label = hf.get('list_classes')
+label = np.array(label)
+
+x = hf.get('train_set_x')
+x = np.array(x)
+
+y = hf.get('train_set_y')
+y = np.array(y)
+database = {}
+for i in range(len(x)):
+  cv2.imwrite("temp.jpg",x[i])
+  database[y[i]] = img_to_encoding("temp.jpg", FRmodel)
+
+y_pred = []
+for i in range(len(x)):
+  cv2.imwrite("temp.jpg",x[i])
+  y_pred.append(classify("temp.jpg", database, FRmodel))
+
+accuracy(x, y, database, FRmodel)
+cm = confusion_matrix(y, y_pred, label)
+
+print("Printing the Confusion Matrix\n")
+print(cm)
+print("Plotting the confusion matrix\n")
+df_cm = pd.DataFrame(cm, index = [i for i in "ABCDEFGH"],
+                  columns = [i for i in "ABCDEFGH"])
+plt.figure(figsize = (10,7))
+sn.heatmap(df_cm, annot=True)
+plt.show()
 database = {}
 
 database["shubham"] = img_to_encoding("images/sk1.jpg", FRmodel)
@@ -65,10 +127,8 @@ def verify(image_path, identity, database, model):
     dist = np.linalg.norm(encoding - database[identity])
     
     if dist < 0.7:
-        print("It's " + str(identity))
         door_open = True
     else:
-        print("It's not " + str(identity))
         door_open = False
 
     return door_open
